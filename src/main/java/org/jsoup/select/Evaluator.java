@@ -630,7 +630,7 @@ public abstract class Evaluator {
 
         @Override
         public boolean matches(Element root, Element element) {
-            return (element.text().toLowerCase().contains(searchText));
+            return (element.text().toLowerCase().contains(searchText)) || (element.data().toLowerCase().contains(searchText));
         }
 
         @Override

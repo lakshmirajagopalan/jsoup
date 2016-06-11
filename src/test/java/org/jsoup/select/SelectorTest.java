@@ -521,6 +521,16 @@ public class SelectorTest {
         assertEquals("2", ps2.first().id());
     }
 
+    @Test public void testContainsInsideAScript() {
+        Document doc = Jsoup.parse("<div><script>var result = 'selected'</script><script>var result = 'selected alone'</script></div>");
+
+        Elements ss1 = doc.select("script:contains(selected alone)");
+        assertEquals(1, ss1.size());
+
+        Elements ss2 = doc.select("script:contains(selected)");
+        assertEquals(2, ss2.size());
+    }
+
     @Test public void containsOwn() {
         Document doc = Jsoup.parse("<p id=1>Hello <b>there</b> now</p>");
         Elements ps = doc.select("p:containsOwn(Hello now)");
